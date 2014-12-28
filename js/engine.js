@@ -80,7 +80,18 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+        if ( allEnemies.length > 0 && allEnemies[allEnemies.length-1].x > 550 )
+            allEnemies.pop();
+        if ( Math.random() < 0.01 &&  allEnemies.length < 3 )
+            allEnemies.push(new Enemy());
+            
+    }
+    
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+            
+        });
     }
 
     /* This is called by the update function  and loops through all of the
@@ -160,7 +171,9 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        player.x = 202;
+        player.y = 83*4-10;
+        allEnemies = new Array();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
